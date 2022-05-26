@@ -1,8 +1,13 @@
 const express = require("express");
 const app = express();
+const path= require("path");
 
-app.get("/",(req, res) => {
-  res.send("Hello World");
+
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/index",(req, res) => {
+  res.render("index");
 });
 
-app.listen(3001);
+app.listen(3001, ()=> console.log("Servidor rodando em http://localhost:3001"));
